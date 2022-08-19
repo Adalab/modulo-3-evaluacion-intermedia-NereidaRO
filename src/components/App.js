@@ -6,8 +6,15 @@ import quotesData from "../services/data.json";
 function App() {
   //Variables de estado
   const [quotes, setQuotes] = useState(quotesData); //si pongo [quotesData] estoy metiendo un array dentro de un array
+  const [addCharacter, setAddCharacter] = useState("");
+  const [addQuote, setAddQuote] = useState("");
 
   //Eventos
+  const handleClick = (ev) => {
+    ev.preventDefault();
+  };
+
+  const handleInput = () => {};
 
   //Renderizado
   const html = quotes.map((oneQuote, index) => {
@@ -31,7 +38,7 @@ function App() {
           <label htmlFor="character">Filtrar por personaje:</label>
           <select name="character" id="character">
             <option value="Ross">Ross</option>
-            <option value="Rchel">Rachel</option>
+            <option value="Rachel">Rachel</option>
             <option value="Chandler">Chandler</option>
             <option value="Monica">Monica</option>
             <option value="Phoebe">Phoebe</option>
@@ -42,10 +49,22 @@ function App() {
         <h2>Añadir una nueva frase:</h2>
         <form>
           <label htmlFor="newQuote">Frase:</label>
-          <input type="text" name="newQuote" id="newQuote"></input>
+          <input
+            type="text"
+            name="newQuote"
+            id="newQuote"
+            onChange={handleInput}
+            value={addQuote}
+          ></input>
           <label htmlFor="newCharacter">Personaje:</label>
-          <input type="text" name="newCharacter" id="newCharacter"></input>
-          <button>Añadir</button>
+          <input
+            type="text"
+            name="newCharacter"
+            id="newCharacter"
+            onChange={handleInput}
+            value={addCharacter}
+          ></input>
+          <button onClick={handleClick}>Añadir</button>
         </form>
       </main>
     </div>
