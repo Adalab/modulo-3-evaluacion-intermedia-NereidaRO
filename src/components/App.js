@@ -12,7 +12,7 @@ function App() {
   //Eventos
   const handleClick = (ev) => {
     ev.preventDefault();
-    setQuotes([...quotes, { quote: addQuote, character: addCharacter }]);
+    setQuotes([...quotes, { quote: addQuote, character: addCharacter }]); //para que sea como data.json
   };
 
   const handleQuote = (ev) => {
