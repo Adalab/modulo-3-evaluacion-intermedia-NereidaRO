@@ -8,6 +8,8 @@ function App() {
   const [quotes, setQuotes] = useState(quotesData); //si pongo [quotesData] estoy metiendo un array dentro de un array
   const [addCharacter, setAddCharacter] = useState("");
   const [addQuote, setAddQuote] = useState("");
+  const [filterQuote, setFilterQuote] = useState("");
+  const [filterCharacter, setFilterCharacter] = useState("");
 
   //Eventos
   const handleClick = (ev) => {
@@ -22,6 +24,20 @@ function App() {
   const handleCharacter = (ev) => {
     setAddCharacter(ev.target.value);
   };
+
+  const handleFilterQuote = (ev) => {
+    setFilterQuote(ev.target.value);
+    return quotes.filter((oneQuote) => {
+      return oneQuote.quote.toLowerCase().includes(filterQuote.toLowerCase());
+    });
+  }; //el filtro funciona, falta pintarlo pero no sé cómo
+
+  const handleFilterCharacter = (ev) => {
+    setFilterCharacter(ev.target.value);
+    return quotes.filter((oneQuote) => {
+      return oneQuote.character;
+    });
+  }; //el filtro funciona, falta pintarlo pero no sé cómo
 
   //Renderizado
   const html = quotes.map((oneQuote, index) => {
@@ -41,9 +57,20 @@ function App() {
       <main>
         <form>
           <label htmlFor="quote">Filtrar por frase:</label>
-          <input type="text" name="quote" id="quote"></input>
+          <input
+            type="text"
+            name="quote"
+            id="quote"
+            onChange={handleFilterQuote}
+            value={filterQuote}
+          ></input>
           <label htmlFor="character">Filtrar por personaje:</label>
-          <select name="character" id="character">
+          <select
+            name="character"
+            id="character"
+            onChange={handleFilterCharacter}
+          >
+            <option value="all">Todos</option>
             <option value="Ross">Ross</option>
             <option value="Rachel">Rachel</option>
             <option value="Chandler">Chandler</option>
