@@ -1,12 +1,22 @@
 import "../styles/App.scss";
 import { useEffect, useState } from "react";
 import ls from "../services/localStorage";
-import quotes from "../services/data.json";
+import quotesData from "../services/data.json";
 
 function App() {
   //Variables de estado
+  const [quotes, setQuotes] = useState(quotesData); //si pongo [quotesData] estoy metiendo un array dentro de un array
 
   //Eventos
+
+  //Renderizado
+  const html = quotes.map((oneQuote, index) => {
+    return (
+      <li key={index}>
+        {oneQuote.quote} - {oneQuote.character}
+      </li>
+    );
+  });
 
   //Página
   return (
