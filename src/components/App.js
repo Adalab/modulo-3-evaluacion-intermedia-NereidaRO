@@ -12,9 +12,16 @@ function App() {
   //Eventos
   const handleClick = (ev) => {
     ev.preventDefault();
+    setQuotes([...quotes, { quote: addQuote, character: addCharacter }]);
   };
 
-  const handleInput = () => {};
+  const handleQuote = (ev) => {
+    setAddQuote(ev.target.value);
+  };
+
+  const handleCharacter = (ev) => {
+    setAddCharacter(ev.target.value);
+  };
 
   //Renderizado
   const html = quotes.map((oneQuote, index) => {
@@ -53,7 +60,7 @@ function App() {
             type="text"
             name="newQuote"
             id="newQuote"
-            onChange={handleInput}
+            onChange={handleQuote}
             value={addQuote}
           ></input>
           <label htmlFor="newCharacter">Personaje:</label>
@@ -61,7 +68,7 @@ function App() {
             type="text"
             name="newCharacter"
             id="newCharacter"
-            onChange={handleInput}
+            onChange={handleCharacter}
             value={addCharacter}
           ></input>
           <button onClick={handleClick}>Añadir</button>
