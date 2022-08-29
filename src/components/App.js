@@ -2,14 +2,22 @@ import "../styles/App.scss";
 import { useEffect, useState } from "react";
 import ls from "../services/localStorage";
 import quotesData from "../services/data.json";
+import getFromApi from "../services/api";
 
 function App() {
   //Variables de estado
-  const [quotes, setQuotes] = useState(quotesData); //si pongo [quotesData] estoy metiendo un array dentro de un array
+  const [quotes, setQuotes] = useState([]); //si pongo [quotesData] estoy metiendo un array dentro de un array
   const [addCharacter, setAddCharacter] = useState("");
   const [addQuote, setAddQuote] = useState("");
   const [filterQuote, setFilterQuote] = useState("");
   const [filterCharacter, setFilterCharacter] = useState("all");
+
+  //Coger los datos de la API
+  useEffect(() => {
+    getFromApi().then((data) => {
+      setQuotes(data);
+    });
+  }, []);
 
   //Eventos
   const handleClick = (ev) => {
@@ -24,6 +32,8 @@ function App() {
   const handleCharacter = (ev) => {
     setAddCharacter(ev.target.value);
   };
+
+  //Filtros
 
   const handleFilterQuote = (ev) => {
     setFilterQuote(ev.target.value);
