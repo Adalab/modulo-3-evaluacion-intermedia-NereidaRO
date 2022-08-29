@@ -9,7 +9,7 @@ function App() {
   const [addCharacter, setAddCharacter] = useState("");
   const [addQuote, setAddQuote] = useState("");
   const [filterQuote, setFilterQuote] = useState("");
-  const [filterCharacter, setFilterCharacter] = useState("");
+  const [filterCharacter, setFilterCharacter] = useState("all");
 
   //Eventos
   const handleClick = (ev) => {
@@ -27,26 +27,31 @@ function App() {
 
   const handleFilterQuote = (ev) => {
     setFilterQuote(ev.target.value);
-    return quotes.filter((oneQuote) => {
-      return oneQuote.quote.toLowerCase().includes(filterQuote.toLowerCase());
-    });
-  }; //el filtro funciona, falta pintarlo pero no sé cómo
+  };
 
   const handleFilterCharacter = (ev) => {
     setFilterCharacter(ev.target.value);
-    return quotes.filter((oneQuote) => {
-      return oneQuote.character;
-    });
-  }; //el filtro funciona, falta pintarlo pero no sé cómo
+  };
 
   //Renderizado
-  const html = quotes.map((oneQuote, index) => {
-    return (
-      <li key={index}>
-        {oneQuote.quote} - {oneQuote.character}
-      </li>
-    );
-  });
+  const html = quotes
+    .filter((item) => {
+      return item.quote.toLowerCase().includes(filterQuote.toLowerCase());
+    })
+    .filter((item) => {
+      if (filterCharacter === "all") {
+        return true;
+      } else {
+        return item.character === filterCharacter;
+      }
+    })
+    .map((item, index) => {
+      return (
+        <li key={index}>
+          {item.quote} - {item.character}
+        </li>
+      );
+    });
 
   //Página
   return (
@@ -69,6 +74,7 @@ function App() {
             name="character"
             id="character"
             onChange={handleFilterCharacter}
+            value={filterCharacter}
           >
             <option value="all">Todos</option>
             <option value="Ross">Ross</option>
