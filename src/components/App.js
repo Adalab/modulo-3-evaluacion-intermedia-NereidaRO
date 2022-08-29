@@ -23,6 +23,8 @@ function App() {
   const handleClick = (ev) => {
     ev.preventDefault();
     setQuotes([...quotes, { quote: addQuote, character: addCharacter }]); //para que sea como data.json
+    setAddQuote("");
+    setAddCharacter("");
   };
 
   const handleQuote = (ev) => {
