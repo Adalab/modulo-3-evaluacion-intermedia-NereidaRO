@@ -1,7 +1,5 @@
 import "../styles/App.scss";
 import { useEffect, useState } from "react";
-import ls from "../services/localStorage";
-import quotesData from "../services/data.json";
 import getFromApi from "../services/api";
 
 function App() {
@@ -59,7 +57,7 @@ function App() {
     })
     .map((item, index) => {
       return (
-        <li key={index}>
+        <li className="main__li" key={index}>
           {item.quote} - {item.character}
         </li>
       );
@@ -68,21 +66,27 @@ function App() {
   //Página
   return (
     <div className="App">
-      <header>
-        <h1>Frases de Friends</h1>
+      <header className="header">
+        <h1 className="header__title">Frases de Friends</h1>
       </header>
-      <main>
-        <form>
-          <label htmlFor="quote">Filtrar por frase:</label>
+      <main className="main">
+        <form className="main__form">
+          <label className="main__label" htmlFor="quote">
+            Filtrar por frase:
+          </label>
           <input
+            className="main__input"
             type="text"
             name="quote"
             id="quote"
             onChange={handleFilterQuote}
             value={filterQuote}
           ></input>
-          <label htmlFor="character">Filtrar por personaje:</label>
+          <label className="main__label" htmlFor="character">
+            Filtrar por personaje:
+          </label>
           <select
+            className="main__select"
             name="character"
             id="character"
             onChange={handleFilterCharacter}
@@ -97,26 +101,34 @@ function App() {
             <option value="Joey">Joey</option>
           </select>
         </form>
-        <ul>{html}</ul>
-        <h2>Añadir una nueva frase:</h2>
-        <form>
-          <label htmlFor="newQuote">Frase:</label>
+        <ul className="main__list">{html}</ul>
+        <h2 className="main__title">Añadir una nueva frase:</h2>
+        <form className="main__form">
+          <label className="main__label" htmlFor="newQuote">
+            Frase:
+          </label>
           <input
+            className="main__input"
             type="text"
             name="newQuote"
             id="newQuote"
             onChange={handleQuote}
             value={addQuote}
           ></input>
-          <label htmlFor="newCharacter">Personaje:</label>
+          <label className="main__label" htmlFor="newCharacter">
+            Personaje:
+          </label>
           <input
+            className="main__input"
             type="text"
             name="newCharacter"
             id="newCharacter"
             onChange={handleCharacter}
             value={addCharacter}
           ></input>
-          <button onClick={handleClick}>Añadir</button>
+          <button className="main__button" onClick={handleClick}>
+            Añadir
+          </button>
         </form>
       </main>
     </div>

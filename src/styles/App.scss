@@ -1,0 +1,54 @@
+@import "./core/vars.scss";
+.App{
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    padding: 5%;
+}
+
+.header{
+    border-bottom: solid 1px $jade;
+    &__title{
+        text-align: center;
+    }
+}
+
+.main{
+    padding-top: 5%;
+
+    &__form{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__input{
+        max-width: $width;
+        margin: $margin;
+        border-radius: $radius;
+    }
+
+    &__select{
+        max-width: $width;
+        margin: $margin;
+        border-radius: $radius;
+        background-color: $tea;
+    }
+
+    &__button{
+        background-color: $tea;
+        align-self: flex-end;
+        border-color: $tea;
+        border-radius: $radius;
+    }
+
+    &__list{
+        list-style-type: none;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    &__li{
+        padding: 3px;
+        border: solid 1px $jade;
+        border-radius: $radius;
+    }
+}
